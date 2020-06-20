@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>RESERVA DE VUELOS</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+    var reserva = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+    var reservados=[];
+    var asientosDisponibles=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+    function reservaDeVuelos(array){
+        
+    do{
+    var opcion = prompt("1.Reservar de vuelo\n 2.Consultar asientos ocupados\n 3.Cancelar asiento\n 4.consultar asientos disponibles\n 5.Salir");
+    switch(opcion){
+        case "1":
+        var numeroAsiento = Number(prompt("Digite el numero de asiento"));
+        if(numeroAsiento > 0 && numeroAsiento < 20 ){
+            if(reserva[numeroAsiento] === 0){
+            reservados.push(numeroAsiento);
+            reserva[numeroAsiento]=1
+            alert("tu asiento esta reservado");
+            }else if(reserva[numeroAsiento] === 1 ){
+                alert("este asiento esta ocupado");
+            }
+        }else{
+            alert("Asiento no existente");
+        }
+        break;
+        case "2":
+        alert("Los asientos reservados son:"+ reservados);
+        break;
+        case "3":
+        var numeroAsiento = Number(prompt("Digite el numero de asiento"));
+            if(numeroAsiento<21||numeroAsiento>0){
+                if(reserva[numeroAsiento]===1){
+                    reserva[numeroAsiento]=0
+                    for(var i = 0;i<21;i++){
+                        var nuevo = reservados[i];
+                        if(numeroAsiento===nuevo){
+                            reservados.splice(i, 1);
+                        }
+                    }
+                    alert(" cancelado de asientos ")
+                }else if(reserva[numeroAsiento]===0){
+                    alert("Asiento disponible");
+                }
+            }else{
+                alert("Asiento no existente");
+            }
+        break;
+        case "4":
+        alert("Los asientos reservados son:"+ asientosDisponibles);
+        break;
+        case "5":
+        opcion="salir"
+        break;
+    }
+}while (opcion !="salir");
+}
+reservaDeVuelos(reserva);
+</script>
+</html>
